@@ -34,6 +34,14 @@ export class CreepDepartment {
         }
     }
 
+    public getMaximumCreepCost(): number {
+        let maxCost = 0;
+        for (const spawn of this.administration.room.find(FIND_MY_SPAWNS)) {
+            maxCost = Math.max(maxCost, spawn.energyCapacity);
+        }
+        return maxCost;
+    }
+
     private acquireIdleCreep(resource: CreepResource): boolean {
         for (const creep of this.administration.room.find(FIND_MY_CREEPS)) {
             let hasAllParts: boolean = true;
