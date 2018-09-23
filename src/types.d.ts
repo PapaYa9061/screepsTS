@@ -4,12 +4,13 @@
 interface CreepMemory {
   role: string;
   room: string;
-  working: boolean;
+  taskforce: string;
+  available: boolean;
+  state: any;
 }
 
 interface Memory {
-  uuid: number;
-  log: any;
+  governmentEstablished: boolean;
 }
 
 // `global` extension samples
