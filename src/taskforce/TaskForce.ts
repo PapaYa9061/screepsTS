@@ -15,6 +15,10 @@ export abstract class TaskForce {
         this.workers.push(worker);
     }
 
+    public getSize(): number {
+        return this.workers.length;
+    }
+
     public tick() {
         for (const worker of this.workers) {
             worker.tick();
@@ -26,6 +30,20 @@ export abstract class TaskForce {
         }
     }
 
+    public dissolve() {
+        for (const worker of this.workers) {
+            worker.release();
+        }
+        this.workers = [];
+        delete this.administration.taskForces[this.id];
+    }
+
     protected abstract createNextWorkerResource(): CreepResource;
+
+    protected releaseExcessWorkerResources() {
+        while (this.workers.length > this.workersRequired) {
+            delete this.workers[this.workersRequired];
+        }
+    }
 
 }

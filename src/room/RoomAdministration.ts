@@ -28,7 +28,7 @@ export class RoomAdministration {
         if (this.room.controller !== undefined) {
             for (const source of this.room.find(FIND_SOURCES)) {
                 const harvest = new EnergyHarvest(this, source, this.room.controller!);
-                harvest.workersRequired = 4;
+                harvest.workersRequired = 10;
                 this.taskForces[harvest.id] = harvest;
             }
         }
